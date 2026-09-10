@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Creation</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Noto Sans Bengali","Nirmala UI",sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%,#ff9fbd 0%,transparent 25%),
+        radial-gradient(circle at 80% 80%,#c77dff 0%,transparent 25%),
+        linear-gradient(135deg,#24102d,#40162f,#1b1028);
+}
+
+/* Background particles */
+
+.particle{
+    position:fixed;
+    pointer-events:none;
+    animation:floatUp linear forwards;
+    opacity:.8;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(110vh) scale(.5);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-20vh) scale(1.2);
+        opacity:0;
+    }
+}
+
+/* Main window */
+
+.window{
+    width:min(92%,440px);
+    position:relative;
+    z-index:5;
+
+    border:2px solid rgba(255,255,255,.35);
+    border-radius:18px;
+
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.55),
+        inset 0 0 30px rgba(255,255,255,.06);
+
+    overflow:hidden;
+
+    animation:windowIn 1s ease;
+}
+
+@keyframes windowIn{
+    from{
+        transform:scale(.7) translateY(30px);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1) translateY(0);
+        opacity:1;
+    }
+}
+
+/* Header */
+
+.header{
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 15px;
+
+    background:rgba(255,255,255,.10);
+    border-bottom:1px solid rgba(255,255,255,.18);
+
+    color:white;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.dots{
+    display:flex;
+    gap:6px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#fff;
+    opacity:.8;
+}
+
+/* Content */
+
+.content{
+    min-height:470px;
+    padding:35px 22px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+}
+
+.icon{
+    font-size:65px;
+    margin-bottom:15px;
+
+    animation:
+        heartbeat 1.6s infinite,
+        glow 2s infinite alternate;
+}
+
+@keyframes heartbeat{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.12);
+    }
+}
+
+@keyframes glow{
+    from{
+        filter:drop-shadow(0 0 5px rgba(255,150,200,.5));
+    }
+
+    to{
+        filter:drop-shadow(0 0 25px rgba(255,150,200,1));
+    }
+}
+
+.popup{
+    width:100%;
+    padding:28px 20px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+
+    color:white;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.25),
+        inset 0 0 20px rgba(255,255,255,.04);
+
+    animation:popupIn .7s ease;
+}
+
+@keyframes popupIn{
+    from{
+        opacity:0;
+        transform:translateY(35px) scale(.92);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.popup h1{
+    margin:0 0 15px;
+
+    font-size:24px;
+
+    color:#ffd6e7;
+
+    text-shadow:
+        0 0 10px rgba(255,150,200,.7);
+}
+
+.popup p{
+    margin:8px 0;
+
+    font-size:17px;
+    line-height:1.8;
+
+    color:#fff;
+}
+
+.small{
+    font-size:13px !important;
+    opacity:.7;
+}
+
+/* Creator */
+
+.creator{
+    margin-top:18px;
+
+    font-size:32px;
+    font-weight:bold;
+
+    letter-spacing:4px;
+
+    color:#ffd1e5;
+
+    text-shadow:
+        0 0 8px #ff7fac,
+        0 0 25px #ff4f91,
+        0 0 50px #ff4f91;
+
+    animation:creatorGlow 1.5s infinite alternate;
+}
+
+@keyframes creatorGlow{
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.06);
+    }
+}
+
+/* Buttons */
+
+.next{
+    margin-top:22px;
+
+    padding:11px 30px;
+
+    border:none;
+    border-radius:30px;
+
+    background:linear-gradient(135deg,#ff72a7,#c85cff);
+
+    color:white;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 25px rgba(255,80,160,.35);
+
+    transition:.25s;
+}
+
+.next:hover{
+    transform:translateY(-3px);
+    box-shadow:
+        0 12px 30px rgba(255,80,160,.55);
+}
+
+.next:active{
+    transform:scale(.94);
+}
+
+/* Progress */
+
+.progress{
+    width:80%;
+    height:4px;
+
+    margin-top:25px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.bar{
+    height:100%;
+    width:25%;
+
+    background:linear-gradient(
+        90deg,
+        #ff79ac,
+        #d76aff
+    );
+
+    transition:width .5s ease;
+}
+
+.step{
+    margin-top:8px;
+
+    color:white;
+    opacity:.55;
+
+    font-size:12px;
+}
+
+/* Hidden */
+
+.hidden{
+    display:none;
+}
+
+/* Cursor */
+
+.cursor{
+    display:inline-block;
+
+    width:2px;
+    height:20px;
+
+    background:white;
+
+    margin-left:4px;
+
+    animation:blink .7s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="window">
+
+    <div class="header">
+
+        <span>✦ A LITTLE CREATION</span>
+
+        <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+    </div>
+
+
+    <div class="content">
+
+        <div class="icon" id="icon">
+            💗
+        </div>
+
+
+        <div class="popup" id="popup">
+
+            <h1 id="title">
+                একটু অপেক্ষা করো...
+            </h1>
+
+            <p id="text">
+                তোমার জন্য ছোট্ট একটা জিনিস তৈরি করা হয়েছে। ✨
+            </p>
+
+            <p class="small">
+                Read the next message →
+            </p>
+
+        </div>
+
+
+        <button class="next" onclick="nextPopup()">
+            NEXT ✦
+        </button>
+
+
+        <div class="progress">
+            <div class="bar" id="bar"></div>
+        </div>
+
+        <div class="step" id="step">
+            1 / 4
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let current = 0;
+
+
+const data = [
+
+    {
+        icon:"💗",
+
+        title:"একটু অপেক্ষা করো...",
+
+        text:"তোমার জন্য ছোট্ট একটা জিনিস তৈরি করা হয়েছে। ✨"
+    },
+
+
+    {
+        icon:"🌸",
+
+        title:"কিছু জিনিস আলাদা হয়...",
+
+        text:"সবকিছু সুন্দর হতে বড় কিছু লাগে না। কখনো কখনো ছোট্ট একটা মুহূর্তই যথেষ্ট। 🌷"
+    },
+
+
+    {
+        icon:"✨",
+
+        title:"এই মুহূর্তটা মনে রাখো...",
+
+        text:"কারণ সুন্দর কিছু মুহূর্ত হঠাৎ আসে, আর মনে অনেকদিন থেকে যায়। 💫"
+    },
+
+
+    {
+        icon:"❤️",
+
+        title:"CREATION COMPLETE",
+
+        text:"এই ছোট্ট animation-টির পেছনে একজন creator আছে।",
+
+        creator:true
+    }
+
+];
+
+
+function showPopup(){
+
+    const item=data[current];
+
+    const popup=document.getElementById("popup");
+
+    /* Restart animation */
+
+    popup.style.animation="none";
+
+    void popup.offsetWidth;
+
+    popup.style.animation="popupIn .7s ease";
+
+
+    document.getElementById("icon").innerHTML=item.icon;
+
+    document.getElementById("title").innerHTML=item.title;
+
+    document.getElementById("text").innerHTML=item.text;
+
+
+    if(item.creator){
+
+        document.getElementById("text").innerHTML +=
+
+        `<div class="creator">SIYAM</div>
+         <p class="small">
+         Designed & Developed with creativity ✦<br>
+         © 2026 Siyam
+         </p>`;
+
+        document.querySelector(".next").innerHTML="FINISH ✨";
+
+    }else{
+
+        document.querySelector(".next").innerHTML="NEXT ✦";
+
+    }
+
+
+    document.getElementById("bar").style.width=
+
+        ((current+1)/data.length*100)+"%";
+
+
+    document.getElementById("step").innerHTML=
+
+        (current+1)+" / "+data.length;
+
+}
+
+
+function nextPopup(){
+
+    if(current < data.length-1){
+
+        current++;
+
+        showPopup();
+
+    }else{
+
+        /* Final effect */
+
+        for(let i=0;i<35;i++){
+
+            setTimeout(createParticle,i*40);
+
+        }
+
+        document.querySelector(".next").innerHTML="✓ COMPLETE";
+
+    }
+
+}
+
+
+/* Floating particles */
+
+function createParticle(){
+
+    const particle=document.createElement("div");
+
+    particle.className="particle";
+
+    const symbols=[
+        "❤️",
+        "💗",
+        "💖",
+        "✨",
+        "🌸",
+        "♡"
+    ];
+
+    particle.innerHTML=
+        symbols[
+            Math.floor(Math.random()*symbols.length)
+        ];
+
+    particle.style.left=
+        Math.random()*100+"vw";
+
+    particle.style.fontSize=
+        (14+Math.random()*20)+"px";
+
+    particle.style.animationDuration=
+        (4+Math.random()*5)+"s";
+
+    document.body.appendChild(particle);
+
+
+    setTimeout(()=>{
+
+        particle.remove();
+
+    },9000);
+
+}
+
+
+/* Start particles */
+
+setInterval(createParticle,450);
+
+
+/* Initial popup */
+
+showPopup();
+
+</script>
+
+</body>
+  </html>

